@@ -10,6 +10,10 @@ class HackerNews extends Component {
     this.state = {}
   }
 
+  componentDidMount(){
+    return this.props.requestArticles()
+  }
+
   render() {
     const articles = this.props.articles.map((article => <Card key={article.id} article={article} />))
     return (
@@ -21,11 +25,11 @@ class HackerNews extends Component {
   }
 }
 
-function mapStateToProps(state){
-  return state;
+function mapStateToProps(reduxState){
+  return reduxState;
 }
 
-export default connect (mapStateToProps)(HackerNews);
+export default connect (mapStateToProps,{requestArticles: requestArticles})(HackerNews);
 
 
 const styles = {
